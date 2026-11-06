@@ -33,7 +33,7 @@ export function createApp(hub = new McpHub((s) => auth.getToken(s))) {
       if (err instanceof SignInRequiredError) {
         return res.status(401).json({ error: err.message, code: err.code, scopes: err.scopes });
       }
-      res.status(err.status || 500).json({ error: err.message });
+      res.status(err.status || 500).json({ error: err.message, ...(err.details ? { details: err.details } : {}) });
     }
   };
 

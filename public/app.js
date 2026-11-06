@@ -76,7 +76,17 @@ async function api(path, { method = 'GET', body } = {}) {
     await signIn(data.scopes);
     throw Object.assign(new Error('Finish signing in, then try again.'), { handled: true });
   }
-  if (!res.ok) throw new Error(data.error || res.statusText);
+  if (!res.ok) {
+    if (data.details?.hints) {
+      modal('Request was refused', el('div', { class: 'stack' },
+        el('div', { class: 'callout danger' }, data.error),
+        el('b', {}, 'Likely causes'),
+        el('ol', {}, data.details.hints.map((x) => el('li', {}, x))),
+        el('details', {}, el('summary', {}, 'Token claims (decoded, not verified)'), el('pre', {}, JSON.stringify(data.details.claims, null, 2)))));
+      throw Object.assign(new Error(data.error), { handled: true });
+    }
+    throw new Error(data.error || res.statusText);
+  }
   return data;
 }
 
