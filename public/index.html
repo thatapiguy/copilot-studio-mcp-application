@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Copilot Studio MCP Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 2.3 6.8 3.8L12 11.8 5.2 8.1 12 4.3ZM5 9.8l6 3.3v6.6l-6-3.3V9.8Zm8 9.9v-6.6l6-3.3v6.6l-6 3.3Z"/></svg>
+      <span>Copilot Studio MCP Explorer</span>
+    </div>
+    <nav class="tabs" id="tabs">
+      <a href="#overview" data-tab="overview">Overview</a>
+      <a href="#copilot-studio" data-tab="copilot-studio">Copilot Studio MCP</a>
+      <a href="#skills" data-tab="skills">Skills</a>
+      <a href="#dataverse" data-tab="dataverse">Dataverse</a>
+      <a href="#console" data-tab="console">MCP Console</a>
+      <a href="#chat" data-tab="chat">Agent Chat</a>
+    </nav>
+    <div class="account" id="account"></div>
+  </header>
+
+  <main id="view"></main>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title"></h3>
+      <div id="modal-body"></div>
+      <div class="modal-actions" id="modal-actions"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
